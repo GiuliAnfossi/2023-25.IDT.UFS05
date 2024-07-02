@@ -74,19 +74,22 @@ def main():
             passwd="H@Sh1CoR3!",
             database="ufs05db"
         )
-       # risposta = "Connection to MySQL DB successful"
+        risposta = "Connection to MySQL DB successful"
         cursor = connection.cursor()
 
-        query = ("SELECT first_name, last_name FROM employees")
+        query = "SELECT first_name, last_name FROM employees"
         cursor.execute(query)
 
-        for (first_name, last_name) in cursor:
-            risposta = first_name +last_name
+        rows = cursor.fetchall()
+        risposta = ""
+        for (first_name, last_name) in rows:
+            risposta += f"{first_name} {last_name}\n"
+        
         cursor.close()
         connection.close()
-    except Error as e:
+    except mysql.connector.Error as e:
         risposta = f"The error '{e}' occurred"
-    return  risposta
+    return risposta
 
 @appWeb.route("/registrazione")
 def registrazione():
