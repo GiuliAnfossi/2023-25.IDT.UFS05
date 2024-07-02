@@ -74,7 +74,7 @@ def main():
             passwd="H@Sh1CoR3!",
             database="ufs05db"
         )
-        risposta = "Connection to MySQL DB successful"
+       # risposta = "Connection to MySQL DB successful"
         cursor = connection.cursor()
 
         query = ("SELECT first_name, last_name FROM employees")
